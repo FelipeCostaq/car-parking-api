@@ -98,4 +98,18 @@ public class CarController : ControllerBase
 
         return Ok(car);
     }
+
+    [HttpDelete("{id}")]
+    public IActionResult Delete(int id)
+    {
+        var car = _context.Cars.Find(id);
+
+        if (car == null)
+            return NotFound();
+
+        _context.Remove(car);
+        _context.SaveChanges();
+
+        return NoContent();
+    }
 }
