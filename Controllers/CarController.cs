@@ -1,10 +1,11 @@
 ﻿using carParkingApi.Context;
+using carParkingApi.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace carParkingApi.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/[controller]")]
 public class CarController : ControllerBase
 {
     private readonly ParkingContext _context;
@@ -13,6 +14,8 @@ public class CarController : ControllerBase
     {
         _context = context;
     }
+
+    #region Get
 
     [HttpGet("{id}")]
     public IActionResult GetCarById(int id)
@@ -25,15 +28,15 @@ public class CarController : ControllerBase
         return Ok(car);
     }
 
-    [HttpGet("GetAllCars")]
-    public IActionResult GetAlCars()
+    [HttpGet("all")]
+    public IActionResult GetAllCars()
     {
         var cars = _context.Cars.ToList();
 
         return Ok(cars);
     }
 
-    [HttpGet("GetByPlate")]
+    [HttpGet("plate")]
     public IActionResult GetByPlate(string plate)
     {
         var cars = _context.Cars.Where(x => x.Plate != null && x.Plate.Contains(plate)).ToList();
@@ -41,7 +44,7 @@ public class CarController : ControllerBase
         return Ok(cars);
     }
 
-    [HttpGet("GetByModel")]
+    [HttpGet("model")]
     public IActionResult GetByModel(string model)
     {
         var cars = _context.Cars.Where(x => x.Model != null && x.Model.Contains(model)).ToList();
@@ -49,7 +52,7 @@ public class CarController : ControllerBase
         return Ok(cars);
     }
 
-    [HttpGet("GetByOwner")]
+    [HttpGet("owner")]
     public IActionResult GetByOwner(string owner)
     {
         var cars = _context.Cars.Where(x => x.Owner != null && x.Owner.Contains(owner)).ToList();
@@ -57,11 +60,28 @@ public class CarController : ControllerBase
         return Ok(cars);
     }
 
-    [HttpGet("GetByApartment")]
+    [HttpGet("apartment")]
     public IActionResult GetByApartment(int apartment)
     {
         var cars = _context.Cars.Where(x => x.Apartment == apartment).ToList();
 
         return Ok(cars);
     }
+
+    #endregion
+
+    #region Post
+
+    [HttpPost]
+    public IActionResult Create([FromBody]Car car)
+    {
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
+        _context.Cars.Add(car);
+        _context.SaveChanges();
+        return CreatedAtAction(nameof(GetCarById), new { id = car.Id }, car);
+    }
+
+    #endregion
 }
