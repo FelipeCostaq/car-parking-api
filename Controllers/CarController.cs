@@ -17,11 +17,18 @@ public class CarController : ControllerBase
     [HttpGet("{id}")]
     public IActionResult GetCarById(int id)
     {
-        var tarefa = _context.Cars.FirstOrDefault(p => p.Id == id);
+        var car = _context.Cars.FirstOrDefault(p => p.Id == id);
 
-        if (tarefa == null)
+        if (car == null)
             return NotFound();
 
-        return Ok(tarefa);
+        return Ok(car);
+    }
+
+    public IActionResult GetAlCars()
+    {
+        var cars = _context.Cars.ToList();
+
+        return Ok(cars);
     }
 }
