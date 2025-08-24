@@ -25,10 +25,19 @@ public class CarController : ControllerBase
         return Ok(car);
     }
 
+    [HttpGet("GetAllCars")]
     public IActionResult GetAlCars()
     {
         var cars = _context.Cars.ToList();
 
         return Ok(cars);
+    }
+
+    [HttpGet("GetByPlate")]
+    public IActionResult GetByPlate(string plate)
+    {
+        var car = _context.Cars.Where(x => x.Plate != null && x.Plate.Contains(plate)).ToList();
+
+        return Ok(car);
     }
 }
