@@ -36,8 +36,32 @@ public class CarController : ControllerBase
     [HttpGet("GetByPlate")]
     public IActionResult GetByPlate(string plate)
     {
-        var car = _context.Cars.Where(x => x.Plate != null && x.Plate.Contains(plate)).ToList();
+        var cars = _context.Cars.Where(x => x.Plate != null && x.Plate.Contains(plate)).ToList();
 
-        return Ok(car);
+        return Ok(cars);
+    }
+
+    [HttpGet("GetByModel")]
+    public IActionResult GetByModel(string model)
+    {
+        var cars = _context.Cars.Where(x => x.Model != null && x.Model.Contains(model)).ToList();
+
+        return Ok(cars);
+    }
+
+    [HttpGet("GetByOwner")]
+    public IActionResult GetByOwner(string owner)
+    {
+        var cars = _context.Cars.Where(x => x.Owner != null && x.Owner.Contains(owner)).ToList();
+
+        return Ok(cars);
+    }
+
+    [HttpGet("GetByApartment")]
+    public IActionResult GetByApartment(int apartment)
+    {
+        var cars = _context.Cars.Where(x => x.Apartment == apartment).ToList();
+
+        return Ok(cars);
     }
 }
