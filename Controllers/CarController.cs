@@ -70,8 +70,6 @@ public class CarController : ControllerBase
 
     #endregion
 
-    #region Post
-
     [HttpPost]
     public IActionResult Create([FromBody]Car car)
     {
@@ -83,5 +81,21 @@ public class CarController : ControllerBase
         return CreatedAtAction(nameof(GetCarById), new { id = car.Id }, car);
     }
 
-    #endregion
+    [HttpPut("{id}")]
+    public IActionResult Update(int id, Car car)
+    {
+        var oldestCar = _context.Cars.Find(id);
+
+        if (oldestCar == null)
+            return NotFound();
+
+        oldestCar.Plate = car.Plate;
+        oldestCar.Model = car.Model;
+        oldestCar.Owner = car.Owner;
+        oldestCar.Apartment = car.Apartment;
+
+        _context.SaveChanges();
+
+        return Ok(car);
+    }
 }
