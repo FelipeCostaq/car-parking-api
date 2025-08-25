@@ -90,5 +90,19 @@ namespace carParkingApi.Controllers
 
             return Ok(parkingSpot);
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            var parkingSpot = _context.ParkingSpots.Find(id);
+
+            if (parkingSpot == null)
+                return NotFound();
+
+            _context.ParkingSpots.Remove(parkingSpot);
+            _context.SaveChanges();
+
+            return NoContent();
+        }
     }
 }
