@@ -73,5 +73,22 @@ namespace carParkingApi.Controllers
             _context.SaveChanges();
             return CreatedAtAction(nameof(GetSpotById), new {id = parkingSpot.Id}, parkingSpot);
         }
+
+        [HttpPut("{id}")]
+        public IActionResult Update(int id, ParkingSpot parkingSpot)
+        {
+            var oldestParkingSpot = _context.ParkingSpots.Find(id);
+
+            if (oldestParkingSpot == null)
+                return NotFound();
+
+            oldestParkingSpot.Number = parkingSpot.Number;
+            oldestParkingSpot.Type = parkingSpot.Type;
+            oldestParkingSpot.Status = parkingSpot.Status;
+
+            _context.SaveChanges();
+
+            return Ok(parkingSpot);
+        }
     }
 }
