@@ -1,5 +1,6 @@
 ﻿using carParkingApi.Context;
 using carParkingApi.Enum;
+using carParkingApi.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace carParkingApi.Controllers
@@ -61,5 +62,16 @@ namespace carParkingApi.Controllers
         }
 
         #endregion
+
+        [HttpPost]
+        public IActionResult Create([FromBody] ParkingSpot parkingSpot)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            _context.Add(parkingSpot);
+            _context.SaveChanges();
+            return CreatedAtAction(nameof(GetSpotById), new {id = parkingSpot.Id}, parkingSpot);
+        }
     }
 }
