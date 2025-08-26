@@ -21,7 +21,7 @@ namespace carParkingApi.Controllers
         [HttpGet("{id}")]
         public IActionResult GetSpotById(int id)
         {
-            var spot = _context.ParkingSpots.FirstOrDefault(p => p.Id == id);
+            var spot = _context.ParkingSpots.FirstOrDefault(x => x.Id == id);
 
             if (spot == null)
                 return NotFound();
@@ -56,7 +56,7 @@ namespace carParkingApi.Controllers
         [HttpGet("status")]
         public IActionResult GetByStatus(ParkingSpotState status)
         {
-            var spots = _context.ParkingSpots.Where(s => s.Status == status).ToList();
+            var spots = _context.ParkingSpots.Where(x => x.Status == status).ToList();
 
             return Ok(spots);
         }

@@ -15,6 +15,9 @@ namespace carParkingApi.Controllers
             _context = context;
         }
 
+
+        #region Get
+
         [HttpGet("all")]
         public IActionResult GetAllParkingAssignments()
         {
@@ -26,7 +29,7 @@ namespace carParkingApi.Controllers
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            var parkingAssignment = _context.ParkingAssignments.FirstOrDefault(p => p.Id == id);
+            var parkingAssignment = _context.ParkingAssignments.FirstOrDefault(x => x.Id == id);
 
             if (parkingAssignment == null)
                 return NotFound();
@@ -34,5 +37,17 @@ namespace carParkingApi.Controllers
             return Ok(parkingAssignment);
         }
 
+        [HttpGet("spotId")]
+        public IActionResult GetBySpotId(int spotId)
+        {
+            var parkingAssignment = _context.ParkingAssignments.Find(spotId);
+
+            if (parkingAssignment == null)
+                return NotFound();
+
+            return Ok(parkingAssignment);
+        }
+
+        #endregion
     }
 }
