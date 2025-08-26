@@ -73,6 +73,33 @@ namespace carParkingApi.Controllers
             return CreatedAtAction(nameof(GetById), new {id = parkingAssignment.Id}, parkingAssignment);
         }
 
-       
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            var parkingAssignment = _context.ParkingAssignments.Find(id);
+
+            if (parkingAssignment == null)
+                return NotFound();
+
+            _context.Remove(parkingAssignment);
+            _context.SaveChanges();
+
+            return NoContent();
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Update(int id, ParkingAssignment parkingAssignment)
+        {
+            var oldestParkingAssignment = _context.ParkingAssignments.Find(id);
+
+            if (oldestParkingAssignment == null)
+                return NotFound();
+
+            oldestParkingAssignment.SpotId = parkingAssignment.SpotId;
+            oldestParkingAssignment.CarId = parkingAssignment.CarId;
+
+            _context.SaveChanges();
+            return Ok(parkingAssignment);
+        }
     }
 }
