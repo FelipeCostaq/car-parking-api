@@ -1,11 +1,12 @@
 ﻿using carParkingApi.Context;
+using carParkingApi.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace carParkingApi.Controllers
 {
     [ApiController]
-    [Route("api/[controlller]")]
+    [Route("api/[controller]")]
     public class ParkingAssignmentController : ControllerBase
     {
         private readonly ParkingContext _context;
@@ -48,6 +49,30 @@ namespace carParkingApi.Controllers
             return Ok(parkingAssignment);
         }
 
+        [HttpGet("carId")]
+        public IActionResult GetByCarId(int carId)
+        {
+            var parkingAssignment = _context.ParkingAssignments.Find(carId);
+
+            if (parkingAssignment == null)
+                return NotFound();
+
+            return Ok(parkingAssignment);
+        }
+
         #endregion
+
+        [HttpPost]
+        public IActionResult Create([FromBody] ParkingAssignment parkingAssignment)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            _context.ParkingAssignments.Add(parkingAssignment);
+            _context.SaveChanges();
+            return CreatedAtAction(nameof(GetById), new {id = parkingAssignment.Id}, parkingAssignment);
+        }
+
+       
     }
 }
