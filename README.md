@@ -30,6 +30,10 @@ API para gerenciamento de vagas e carros em um estacionamento condominial. Desen
    ```bash
    dotnet run
 
+5. Acesse a documentação completa pelo Swagger em:  
+`https://localhost:5001/swagger`
+
+
 # Endpoints
 
 ## Car
