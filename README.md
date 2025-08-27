@@ -34,39 +34,34 @@ API para gerenciamento de vagas e carros em um estacionamento condominial. Desen
 
 ## Car
 
-<ul>
-   <li>GET /api/Car/all – Lista todos os carros.</li>
-   <li>GET /api/Car/{id} – Retorna um carro pelo ID.</li>
-   <li>GET /api/Car/plate – Retorna um carro pela placa.</li>
-   <li>GET /api/Car/model – Retorna um carro pelo modelo.</li>
-   <li>GET /api/Car/owner – Retorna um carro pelo proprietário.</li>
-   <li>GET /api/Car/apartment – Retorna um carro pelo apartamento.</li>
-   <li>POST /api/Car – Adiciona um carro.</li>
-   <li>PUT /api/Car/{id} – Atualiza um carro.</li>
-   <li>DELETE /api/Car/{id} – Remove um carro.</li>
-</ul>
+- **GET** `/api/Car/all` – Lista todos os carros.
+- **GET** `/api/Car/{id}` – Retorna um carro pelo ID.
+- **GET** `/api/Car/plate` – Retorna um carro pela placa.
+- **GET** `/api/Car/model` – Retorna um carro pelo modelo.
+- **GET** `/api/Car/owner` – Retorna um carro pelo proprietário.
+- **GET** `/api/Car/apartment` – Retorna um carro pelo apartamento.
+- **POST** `/api/Car` – Adiciona um carro.
+- **PUT** `/api/Car/{id}` – Atualiza um carro.
+- **DELETE** `/api/Car/{id}` – Remove um carro.
 
 ## ParkingSpot
 
-<ul>
-   <li>GET /api/ParkingSpot/all – Lista todos as vagas.</li>
-   <li>GET /api/ParkingSpot/number – Retorna uma vaga pelo número.</li>
-   <li>GET /api/ParkingSpot/type – Retorna uma vaga pelo tipo.</li>
-   <li>GET /api/ParkingSpot/status – Retorna uma vaga pelo status.</li>
-   <li>GET /api/ParkingSpot/{id} – Retorna uma vaga pelo id.</li>
-   <li>POST /api/ParkingSpot – Adiciona uma vaga.</li>
-   <li>PUT /api/ParkingSpot/{id} – Atualiza uma vaga.</li>
-   <li>DELETE /api/ParkingSpot/{id} – Remove uma vaga.</li>
-</ul>
+- **GET** `/api/ParkingSpot/all` – Lista todas as vagas.
+- **GET** `/api/ParkingSpot/number` – Retorna uma vaga pelo número.
+- **GET** `/api/ParkingSpot/type` – Retorna uma vaga pelo tipo.
+- **GET** `/api/ParkingSpot/status` – Retorna uma vaga pelo status.
+- **GET** `/api/ParkingSpot/{id}` – Retorna uma vaga pelo ID.
+- **POST** `/api/ParkingSpot` – Adiciona uma vaga.
+- **PUT** `/api/ParkingSpot/{id}` – Atualiza uma vaga.
+- **DELETE** `/api/ParkingSpot/{id}` – Remove uma vaga.
 
 ## ParkingAssignment
 
-<ul>
-   <li>GET /api/ParkingAssignment/all – Lista todos as atribuições.</li>
-   <li>GET /api/ParkingAssignment/spotId – Retorna uma atribuição pelo id da vaga.</li>
-   <li>GET /api/ParkingAssignment/carId – Retorna uma atribuição pelo id do carro.</li>
-   <li>GET /api/ParkingAssignment/{id} – Retorna uma vaga pelo id.</li>
-   <li>POST /api/ParkingAssignment – Adiciona uma atribuição.</li>
-   <li>PUT /api/ParkingAssignment/{id} – Atualiza uma atribuição.</li>
-   <li>DELETE /api/ParkingAssignment/{id} – Remove uma atribuição.</li>
-</ul>
+- **GET** `/api/ParkingAssignment/all` – Lista todas as atribuições.
+- **GET** `/api/ParkingAssignment/spotId` – Retorna uma atribuição pelo ID da vaga.
+- **GET** `/api/ParkingAssignment/carId` – Retorna uma atribuição pelo ID do carro.
+- **GET** `/api/ParkingAssignment/{id}` – Retorna uma atribuição pelo ID.
+- **POST** `/api/ParkingAssignment` – Adiciona uma atribuição.
+- **PUT** `/api/ParkingAssignment/{id}` – Atualiza uma atribuição.
+- **DELETE** `/api/ParkingAssignment/{id}` – Remove uma atribuição.
+
