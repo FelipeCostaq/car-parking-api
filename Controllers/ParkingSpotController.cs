@@ -28,7 +28,7 @@ namespace carParkingApi.Controllers
 
             return Ok(spot);
         }
-
+        //
         [HttpGet("all")]
         public IActionResult GetAll()
         {
