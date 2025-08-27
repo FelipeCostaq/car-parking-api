@@ -1,5 +1,5 @@
 # Car Parking API
-API para gerenciamento de vagas e carros em um estacionamento. Desenvolvida em C# com ASP.NET Core e Entity Framework.
+API para gerenciamento de vagas e carros em um estacionamento condominial. Desenvolvida em C# com ASP.NET Core e Entity Framework.
 
 ## Tecnologias Utilizadas
 - ASP.NET Core Web API
