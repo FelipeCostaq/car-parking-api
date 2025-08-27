@@ -29,7 +29,7 @@ namespace carParkingApi.Controllers
             return Ok(spot);
         }
 
-        [HttpGet]
+        [HttpGet("all")]
         public IActionResult GetAll()
         {
             var spots = _context.ParkingSpots.ToList();
