@@ -41,7 +41,7 @@ namespace carParkingApi.Controllers
         [HttpGet("spotId")]
         public IActionResult GetBySpotId(int spotId)
         {
-            var parkingAssignment = _context.ParkingAssignments.Find(spotId);
+            var parkingAssignment = _context.ParkingAssignments.Where(x => x.SpotId == spotId);
 
             if (parkingAssignment == null)
                 return NotFound();
@@ -52,7 +52,7 @@ namespace carParkingApi.Controllers
         [HttpGet("carId")]
         public IActionResult GetByCarId(int carId)
         {
-            var parkingAssignment = _context.ParkingAssignments.Find(carId);
+            var parkingAssignment = _context.ParkingAssignments.Where(x => x.CarId == carId);
 
             if (parkingAssignment == null)
                 return NotFound();
